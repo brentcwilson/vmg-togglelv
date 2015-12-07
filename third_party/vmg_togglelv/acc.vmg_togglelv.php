@@ -1,35 +1,38 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
- 
+<?php if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
+
 /**
  * VMG GTM Utilities
  *
- * @package		ExpressionEngine
- * @subpackage	Addons
- * @category	Accessory
- * @author		Brent C. Wilson
- * @link		http://www.vectormediagroup.com
+ * @package        ExpressionEngine
+ * @subpackage     Addons
+ * @category       Accessory
+ * @author         Brent C. Wilson
+ * @link           http://www.vectormediagroup.com
  */
- 
-class Vmg_togglelv_acc {
-	
-	public $name			= 'VMG Toggle Low Variables';
-	public $id				= 'vmg_togglelv';
-	public $version			= '1.0';
-	public $description		= 'Toggle visibility of Low Variables';
-	public $sections		= array();
-	
-	private $EE;
-	private $hideVarsAt     = 3; // Hide LVs when there are >= this number
-	private $classMinimized = 'vmg-togglelv-minimized'; // Class used to control LV visibility
-	
-	/**
-	 * Do the magic
-	 */
-	public function set_sections()
-	{
-		$this->EE =& get_instance();
+class Vmg_togglelv_acc
+{
 
-		$js = <<<EOJS
+    public $name        = 'VMG Toggle Low Variables';
+    public $id          = 'vmg_togglelv';
+    public $version     = '1.0';
+    public $description = 'Toggle visibility of Low Variables';
+    public $sections    = array();
+
+    private $EE;
+    private $hideVarsAt     = 3; // Hide LVs when there are >= this number
+    private $classMinimized = 'vmg-togglelv-minimized'; // Class used to control LV visibility
+
+
+    /**
+     * Do the magic
+     */
+    public function set_sections()
+    {
+        $this->EE =& get_instance();
+
+        $js = <<<EOJS
 <style>
 	#low-varlist tbody td:first-child .low-label {
 		cursor: pointer;
@@ -70,17 +73,17 @@ class Vmg_togglelv_acc {
 				if ($(this).hasClass(classMinimized)) {
 					$(this).add(rows).removeClass(classMinimized);
 				} else {
-					$(this).add(rows).addClass(classMinimized).find('tr');
+					$(this).add(rows).addClass(classMinimized);
 				}
 			});
 		}
 	});
 </script>
 EOJS;
-		$this->EE->cp->add_to_head($js);
-	}
-	
+        $this->EE->cp->add_to_head($js);
+    }
+
 }
- 
+
 /* End of file acc.vmg_togglelv.php */
 /* Location: /system/expressionengine/third_party/vmg_togglelv/acc.vmg_togglelv.php */
